@@ -23,5 +23,5 @@ jobs:
         run: npx surge --project ./build --doamin https://possessive-push.surge.sh/
         env:
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
-          : ${{ secrets.SURGE_TOKEN }}
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
 
