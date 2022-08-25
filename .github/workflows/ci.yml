@@ -8,8 +8,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: test
-        run: |
-          node -v
-          npm -v
-      # coo
+      - uses: actions/checkout@v3
+      - run: npm ci
+      - run: npm test -- --coverage
+        env:
+          CI: true
+      #
