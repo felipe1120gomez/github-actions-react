@@ -24,10 +24,10 @@ jobs:
           CI: true
       - name: build project
         if: github.event_name == 'push'
-      - run: npm run build
+        run: npm run build
       - name: deploy to staging
         if: github.event_name == 'push'
-      - run: npx surge --project ./build --doamin https://possessive-push.surge.sh/
+        run: npx surge --project ./build --doamin https://possessive-push.surge.sh/
         env:
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
