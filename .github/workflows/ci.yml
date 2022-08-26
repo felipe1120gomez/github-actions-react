@@ -36,6 +36,7 @@ jobs:
         run: npm run build
 
       - name: upload build folder
+        if: github.event_name == 'push'
         uses: actions/upload-artifact@v3
         with:
           name: build
