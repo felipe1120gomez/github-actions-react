@@ -21,9 +21,6 @@ jobs:
             ${{ runner.os }}-node-
       
       - name: node version
-      - uses: actions/setup-node@v3
-        with:
-          node-version:  16
       - run: npm ci
       - run: npm test -- --coverage
         env:
