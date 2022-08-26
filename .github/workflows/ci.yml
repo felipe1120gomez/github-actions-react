@@ -42,6 +42,12 @@ jobs:
           name: build
           path: build
       
+      - name: zip assets
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          zip -r build.zip ./build
+          zip -r coverage.zip ./coverage
+      
       - name: create a release
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: npx semantic-release
