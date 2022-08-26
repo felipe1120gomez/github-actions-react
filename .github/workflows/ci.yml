@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      
       - name: Cache node_modules
         uses: actions/cache@v3
         with:
@@ -18,13 +19,32 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+      
+      - name: node version
+      - uses: actions/setup-node@v3
+        with:
+          node-version:  16
       - run: npm ci
       - run: npm test -- --coverage
         env:
           CI: true
+
+      - name: upload test coverage
+      - uses: actions/upload-artifact@v3
+        with:
+          name: code-coverage
+          path: coverage
+
       - name: build project
         if: github.event_name == 'push'
         run: npm run build
+
+      - name: upload build folder
+      - uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: build
+      
       - name: deploy to staging
         if: github.event_name == 'push'
         run: npx surge --project ./build --doamin https://possessive-push.surge.sh/
