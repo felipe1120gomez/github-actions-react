@@ -11,13 +11,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      
+      - name: npm scripts
       - run: npm ci
       - run: npm test -- --coverage
         env:
           CI: true
+      
       - name: build project
         if: github.event_name == 'push'
         run: npm run build
+      
       - name: deploy to staging
         if: github.event_name == 'push'
         run: npx surge --project ./build --doamin https://possessive-push.surge.sh/
