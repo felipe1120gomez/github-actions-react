@@ -30,7 +30,7 @@ jobs:
           CI: true
 
       - name: upload test coverage
-      - uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3
         with:
           name: code-coverage
           path: coverage
@@ -40,7 +40,7 @@ jobs:
         run: npm run build
 
       - name: upload build folder
-      - uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3
         with:
           name: build
           path: build
