@@ -13,8 +13,8 @@ jobs:
           assignees: |
             felipe1120gomez
       - run: |
-          echo "Time: ${{ steps.issue.outputs.issue }}"
-      - uses: ./.github/actions/hello
+          echo ${{ steps.issue.outputs.issue }}
+      - uses: ./.github/actions/hello-docker
         id: hello
         with:
           who-to-greet: "World"
