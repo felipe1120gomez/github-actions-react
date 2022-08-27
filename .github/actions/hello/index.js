@@ -2,7 +2,7 @@ const core = require("@actions/core");
 const github = require("@actions/github");
 
 try {
-  // throw(new Error("Invalid arguments"));
+  throw new Error("Invalid arguments");
 
   const name = core.getInput("who-to-greet");
   console.log(`Hello ${name}`);
