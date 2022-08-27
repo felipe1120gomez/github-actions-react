@@ -1,0 +1,14 @@
+name: Hello World
+author: Felipe Gomez
+description: Private action
+inputs:
+  who-to-greet:
+    description: 'who to greet'
+    required: true
+    default: 'Felipe'
+outputs:
+  time:
+    description: 'Greeting time'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
